@@ -1,32 +1,47 @@
 package org.lab.pw.collections.demonstration;
 
 import org.lab.pw.collections.data.Person;
+import org.lab.pw.collections.data.PersonOverridden;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ArrayListDemonstration extends CollectionDemonstration{
 
-    private List<Person> data;
+    private final List<Person> data;
+    private final List<PersonOverridden> dataOverridden;
 
-    public ArrayListDemonstration(int dataCount) {
-        super("ArrayList demonstration", dataCount);
-        data = new ArrayList<>(dataCount);
+    public ArrayListDemonstration() {
+        super("ArrayList demonstration");
+        data = new ArrayList<>();
+        dataOverridden = new ArrayList<>();
     }
 
     @Override
-    protected void printDataObjects() {
+    public void printStoredNotOverriddenObjects() {
         for(var dataObject : data)
             System.out.print("| " + dataObject.toString() + " |");
     }
 
     @Override
-    protected void addDataObjects(List<Person> dataObjects) {
+    public void printStoredOverriddenObjects() {
+        for(var dataObject : dataOverridden)
+            System.out.print("| " + dataObject.toString() + " |");
+    }
+
+    @Override
+    public void addNotOverriddenDataObjects(List<Person> dataObjects) {
         this.data.addAll(dataObjects);
     }
 
     @Override
-    protected void removeDataObjects() {
+    public void addOverriddenDataObjects(List<PersonOverridden> dataObjects) {
+        this.dataOverridden.addAll(dataObjects);
+    }
+
+    @Override
+    public void removeDataObjects() {
         this.data.clear();
+        this.dataOverridden.clear();
     }
 }
