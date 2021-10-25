@@ -66,7 +66,7 @@ enum PersonJob {
  * niedozwolonej wartości, któremuś z atrybutów jest zgłaszany wyjątek
  * zawierający stosowny komunikat.
  */
-public class Person{
+public class Person implements Comparable<Person>{
 	
 	private String firstName;
 	private String lastName;
@@ -200,5 +200,14 @@ public class Person{
 		}	
 	}
 
+	@Override
+	public int compareTo(Person person) {
+		if(person == null)
+			throw new NullPointerException();
+
+		String otherPersonWholeName = person.getFirstName() + " " + person.getLastName();
+		String thisPersonWholeName = getFirstName() + " " + getLastName();
+		return thisPersonWholeName.compareTo(otherPersonWholeName);
+	}
 
 }  // koniec klasy Person

@@ -20,13 +20,13 @@ public class LinkedListDemonstration extends CollectionDemonstration{
     @Override
     public void printStoredNotOverriddenObjects() {
         for(var dataObject : data)
-            System.out.print("| " + dataObject.toString() + " |");
+            System.out.println("| " + dataObject.toString() + " |");
     }
 
     @Override
     public void printStoredOverriddenObjects() {
         for(var dataObject : dataOverridden)
-            System.out.print("| " + dataObject.toString() + " |");
+            System.out.println("| " + dataObject.toString() + " |");
     }
 
     @Override

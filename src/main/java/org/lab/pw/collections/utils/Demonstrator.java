@@ -5,25 +5,27 @@ import org.lab.pw.collections.data.PersonException;
 import org.lab.pw.collections.data.PersonOverridden;
 import org.lab.pw.collections.demonstration.CollectionDemonstration;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Demonstrator {
 
-    private List<CollectionDemonstration> demonstrations;
     private List<Person> notOverriddenDataObjects;
     private List<PersonOverridden> overriddenDataObjects;
     private final PersonDataService personDataService;
     private final ConsoleUserDialog consoleUserDialog;
-    private int dataCount;
+    private final int dataCount;
 
-    public Demonstrator(List<CollectionDemonstration> demonstrations, int dataCount, boolean consistentDataSet) {
-        this.demonstrations = demonstrations;
-        consoleUserDialog = new ConsoleUserDialog();
+    public Demonstrator(int dataCount, boolean consistentDataSet) {
+        this.dataCount = dataCount;
+        this.consoleUserDialog = new ConsoleUserDialog();
         this.personDataService = new RandomPersonDataProvider();
-        this.populateDataObjects();
+        this.notOverriddenDataObjects = new ArrayList<>();
+        this.overriddenDataObjects = new ArrayList<>();
+        this.populateDataObjects(consistentDataSet);
     }
 
-    public void startDemonstration() throws InterruptedException {
+    public void startDemonstration(List<CollectionDemonstration> demonstrations) throws InterruptedException {
         for(var demonstration : demonstrations){
             consoleUserDialog.printMessage("#############################################");
             consoleUserDialog.printMessage("Starting demonstration of " + demonstration.getDemonstrationName());
@@ -47,11 +49,11 @@ public class Demonstrator {
         consoleUserDialog.printMessage("Adding objects...");
         demonstration.addNotOverriddenDataObjects(notOverriddenDataObjects);
         consoleUserDialog.printMessage("Objects in collection: ");
-        demonstration.printStoredOverriddenObjects();
+        demonstration.printStoredNotOverriddenObjects();
         consoleUserDialog.printMessage("Removing objects...");
         demonstration.removeDataObjects();
         consoleUserDialog.printMessage("Objects in collection: ");
-        demonstration.printStoredOverriddenObjects();
+        demonstration.printStoredNotOverriddenObjects();
     }
 
     private void addRemoveTestOverriddenObjects(CollectionDemonstration demonstration){
@@ -65,7 +67,6 @@ public class Demonstrator {
         consoleUserDialog.printMessage("Objects in collection: ");
         demonstration.printStoredOverriddenObjects();
     }
-
 
     private void demonstrateWithObjectMethodsNotOverridden(CollectionDemonstration demonstration){
         addRemoveTestNotOverriddenObjects(demonstration);
@@ -85,20 +86,30 @@ public class Demonstrator {
             this.consoleUserDialog.printMessage("| " + obj.toString() + " |");
     }
 
-    private void populateDataObjects() {
-
+    private void populateDataObjects(boolean consistentDataSet) {
         try {
             for (int i = 0; i < dataCount; i++){
-                notOverriddenDataObjects.add(new Person(
+                Person newPerson = new Person(
                         this.personDataService.getPersonName(),
-                        this.personDataService.getPersonLastName()));
-                overriddenDataObjects.add(new PersonOverridden(
-                        this.personDataService.getPersonName(),
-                        this.personDataService.getPersonLastName()));
+                        this.personDataService.getPersonLastName());
+                PersonOverridden newPersonOverridden;
+
+                if(!consistentDataSet)
+                    newPersonOverridden = new PersonOverridden(
+                            this.personDataService.getPersonName(),
+                            this.personDataService.getPersonLastName());
+                else
+                    newPersonOverridden = new PersonOverridden(
+                            newPerson.getFirstName(),
+                            newPerson.getLastName());
+
+
+                notOverriddenDataObjects.add(newPerson);
+                overriddenDataObjects.add(newPersonOverridden);
             }
         }
-        catch (PersonException personException){
-            personException.printStackTrace();
+        catch (Exception ex){
+            ex.printStackTrace();
             this.consoleUserDialog.printErrorMessage("Error while populating data set. Aborting!");
             throw new IllegalStateException("Error while populating data set. Aborting!");
         }

@@ -22,13 +22,13 @@ public class HashMapDemonstration extends CollectionDemonstration{
     @Override
     public void printStoredNotOverriddenObjects() {
         for(var dataKey : data.keySet())
-            System.out.print("| " + dataKey + " : "+ data.get(dataKey) + " |");
+            System.out.println("| " + dataKey + " : "+ data.get(dataKey) + " |");
     }
 
     @Override
     public void printStoredOverriddenObjects() {
         for(var dataKey : dataOverridden.keySet())
-            System.out.print("| " + dataKey + " : "+ dataOverridden.get(dataKey) + " |");
+            System.out.println("| " + dataKey + " : "+ dataOverridden.get(dataKey) + " |");
     }
 
     @Override
