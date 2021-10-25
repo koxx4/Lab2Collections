@@ -2,16 +2,21 @@ package org.lab.pw.collections;
 
 import org.lab.pw.collections.demonstration.*;
 import org.lab.pw.collections.utils.Demonstrator;
+import org.lab.pw.collections.utils.DemonstratorOptions;
 
-import java.util.List;
+import java.util.*;
 
 public class App {
 
-    static int DATA_SET_SIZE = 10;
-    static boolean IS_DATA_SET_CONSISTENT = true;
 
     public static void main( String[] args ) {
-        Demonstrator demonstrator = new Demonstrator(DATA_SET_SIZE, IS_DATA_SET_CONSISTENT);
+
+        DemonstratorOptions options = new DemonstratorOptions();
+        options.setDataSetSize(5);
+        options.setAreDeepDuplicatedValuesGuaranteed(true);
+        options.setDataConsistent(true);
+
+        Demonstrator demonstrator = new Demonstrator(options);
         try{
             demonstrator.startDemonstration(List.of(
                     new ArrayListDemonstration(),
@@ -22,7 +27,8 @@ public class App {
                     new TreeMapDemonstration()));
         } catch (Exception ex){
             ex.printStackTrace();
+        } finally {
+            System.exit(0);
         }
-        System.exit(0);
     }
 }

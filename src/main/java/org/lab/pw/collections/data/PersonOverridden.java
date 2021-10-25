@@ -8,6 +8,10 @@ public class PersonOverridden extends Person implements Comparable<Person>{
         super(first_name, last_name);
     }
 
+    public PersonOverridden(Person person) throws PersonException {
+        super(person);
+    }
+
     @Override
     public int compareTo(Person person) {
         if(person == null)
