@@ -50,20 +50,6 @@ enum PersonJob {
 }  // koniec klasy enum Job
 
 
-/**
- * Klasa PersonException jest klasą wyjątków służącą do zgłaszania błędów
- * występujących przy operacjach na obiektach klasy Person.
- */
-class PersonException extends Exception {
-
-	private static final long serialVersionUID = 1L;
-
-	public PersonException(String message) {
-		super(message);
-	}
-	
-} // koniec klasy PersonException
-
 
 /**
  * Klasa Person reprezentuje osoby, które są opisane za pomocą

@@ -1,4 +1,4 @@
-package org.lab.pw.collections;
+package org.lab.pw.collections.utils;
 
 public interface PersonDataService {
 

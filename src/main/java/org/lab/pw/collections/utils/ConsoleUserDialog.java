@@ -1,4 +1,4 @@
-package org.lab.pw.collections;
+package org.lab.pw.collections.utils;
 /*
  * Program: Prosta biblioteka metod do realizacji dialogu z użytkownikiem
  *          w prostych aplikacjach bez graficznego interfejsu użytkownika.

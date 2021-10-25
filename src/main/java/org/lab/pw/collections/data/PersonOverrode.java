@@ -1,8 +1,8 @@
 package org.lab.pw.collections.data;
 
-public class PersonObjectOverrode extends Person{
+public class PersonOverrode extends Person{
 
-    public PersonObjectOverrode(String first_name, String last_name) throws PersonException {
+    public PersonOverrode(String first_name, String last_name) throws PersonException {
         super(first_name, last_name);
     }
 

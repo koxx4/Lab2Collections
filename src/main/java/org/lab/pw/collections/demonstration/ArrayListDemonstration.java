@@ -1,25 +1,32 @@
-package org.lab.pw.collections.demonstrable;
+package org.lab.pw.collections.demonstration;
 
 import org.lab.pw.collections.data.Person;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class ArrayListDemonstration implements CollectionDemonstration{
+public class ArrayListDemonstration extends CollectionDemonstration{
 
-    private List dataSet;
+    private List<Person> data;
 
-    public ArrayListDemonstration(){
-        dataSet = new ArrayList();
+    public ArrayListDemonstration(int dataCount) {
+        super("ArrayList demonstration", dataCount);
+        data = new ArrayList<>(dataCount);
     }
 
     @Override
-    public void demonstrateWithObjectMethodsNotOverrode() {
-        dataSet.add(new Person(""))
+    protected void printDataObjects() {
+        for(var dataObject : data)
+            System.out.print("| " + dataObject.toString() + " |");
     }
 
     @Override
-    public void demonstrateWithObjectMethodsOverrode() {
+    protected void addDataObjects(List<Person> dataObjects) {
+        this.data.addAll(dataObjects);
+    }
 
+    @Override
+    protected void removeDataObjects() {
+        this.data.clear();
     }
 }

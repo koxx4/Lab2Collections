@@ -1,19 +1,25 @@
 package org.lab.pw.collections;
 
-public class App 
+import org.lab.pw.collections.utils.ConsoleUserDialog;
+
+public class App
 {
+    //list
     //array list
+    //linked list
+
     //sorted set
     //vector
     //map
     //hash map
-    //linked hash map
     //tree map
     //set
     //hash set
     //tree set
 
+
+
     public static void main( String[] args ) {
-        System.out.println( "Hello World!" );
+        ConsoleUserDialog consoleUserDialog = new ConsoleUserDialog();
     }
 }
